@@ -1,0 +1,9 @@
+[submodule "submodules/live555"]
+	path = submodules/live555
+	url = https://github.com/GlobalInvacomGroupLimited/live555.git
+[submodule "submodules/raptorrtp"]
+	path = submodules/raptorrtp
+	url = https://github.com/GlobalInvacomGroupLimited/raptorrtp.git
+[submodule "submodules/raptor"]
+	path = submodules/raptor
+	url = https://github.com/GlobalInvacomGroupLimited/raptor.git
