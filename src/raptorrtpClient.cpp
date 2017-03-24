@@ -230,10 +230,18 @@ char * getSdp ( char* url )
 
 
 
-main()
+int main (int argc, char *argv[])
 {
     char * sdpDescription;
     giMediaSubsession *sub = NULL;
+
+    int opt;
+    char defaultip[]="192.168.100.100";
+    char defaultfile[]="streamA.sdp";
+
+    char *ip_addr   = NULL;
+    char *file_name = NULL;
+    char *url       = NULL;
 
     // Setup a signal to catch Ctrl-C inorder to exit cleanly
     struct sigaction sigIntHandler;
@@ -247,13 +255,51 @@ main()
     // Set the exit flag to 0
     exitWatchVariable = 0;
 
+
+    while ( (opt = getopt( argc, argv, "i:f:") ) != -1 )
+    {
+        switch(opt)
+        {
+            case 'i':
+                ip_addr = optarg;
+            break;
+            case 'f':
+                file_name = optarg;
+            break;
+            case '?':
+                if (optopt == 'i')
+                    printf("\nMissing mandatory input option");
+                else if (optopt == 'f')
+                    printf("\nMissing mandatory output option");
+                else
+                    printf("\nInvalid option received");
+            break;
+        }
+    }
+
+    if(ip_addr == NULL )
+    {
+        ip_addr = defaultip;
+    }
+
+    if(file_name == NULL )
+    {
+        file_name = defaultfile;
+    }
+
+    asprintf(&url, "http://%s/%s", ip_addr, file_name);
+
+
+    printf("URL=%s\n", url);
+
+
     // Begin by setting up our usage environment:
     TaskScheduler* scheduler = BasicTaskScheduler::createNew();
 
     env = BasicUsageEnvironment::createNew(*scheduler);
 
     // Get the service description file from the server
-    sdpDescription = getSdp("http://192.168.100.100/streamA.sdp");
+    sdpDescription = getSdp(url);
 
     fprintf( stderr, "SDP = %s\n", sdpDescription ); 
 
