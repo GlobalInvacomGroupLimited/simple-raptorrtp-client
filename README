@@ -1,0 +1,21 @@
+# simple-raptorrtp-client
+Basic sample application using raptorrtp
+
+
+### Requirements
+* Live555   - http://www.live555.com/liveMedia/public/
+* Raptor    - https://github.com/GlobalInvacomGroupLimited/raptor
+* Raptorrtp - https://github.com/GlobalInvacomGroupLimited/raptorrtp.git
+
+
+### Initialise
+git submodule init
+git submodule update
+cd submodules
+./build-submodules.sh
+
+
+### Build
+    ./autogen.sh
+    ./configure
+    make
