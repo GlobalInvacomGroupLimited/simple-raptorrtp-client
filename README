@@ -9,6 +9,8 @@ Basic sample application using raptorrtp
 
 
 ### Initialise and build
+git clone https://github.com/GlobalInvacomGroupLimited/simple-raptorrtp-client.git
+cd simple-raptorrtp-client
 git submodule init
 git submodule update
 cd submodules
