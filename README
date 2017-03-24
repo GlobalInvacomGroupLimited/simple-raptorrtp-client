@@ -8,14 +8,10 @@ Basic sample application using raptorrtp
 * Raptorrtp - https://github.com/GlobalInvacomGroupLimited/raptorrtp.git
 
 
-### Initialise
+### Initialise and build
 git submodule init
 git submodule update
 cd submodules
 ./build-submodules.sh
-
-
-### Build
-    ./autogen.sh
-    ./configure
-    make
+cd ../
+./build-app.sh
