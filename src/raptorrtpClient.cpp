@@ -243,6 +243,9 @@ int main (int argc, char *argv[])
     char *file_name = NULL;
     char *url       = NULL;
 
+    bool fecLogging = true; 
+
+
     // Setup a signal to catch Ctrl-C inorder to exit cleanly
     struct sigaction sigIntHandler;
 
@@ -365,6 +368,8 @@ int main (int argc, char *argv[])
                 {
                     // Connect the RAPTORFEC subsession to the MP2T session.
                     sub->sink = temSubsession->raptorRtpSource();
+                    temSubsession->raptorRtpSource()->configLogToFile( fecLogging );
+
                     break;
                 }
             }
