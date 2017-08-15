@@ -28,12 +28,29 @@ SUBDIRS="groupsock liveMedia UsageEnvironment BasicUsageEnvironment"
   done )
 
 
+if [ ! -f boost_1_63_0.tar.gz ]; then
+    wget http://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.gz
+fi
+
+if [ ! -d boost_1_63_0 ]; then
+    tar -xf boost_1_63_0.tar.gz
+fi
+
+if [ ! -d ../install/include/boost ]; then
+    cp -r boost_1_63_0/boost ../install/include/
+fi
+ 
+
+
+
+
+
 echo "Build raptor"
 ( cd raptor
   ./autogen.sh
-  ./configure --enable-static --disable-shared --prefix=$PREFIX )
+  ./configure CPPFLAGS=-I$PREFIX/include --enable-static --disable-shared --prefix=$PREFIX )
 
-make -j 4 -C raptor
+make -j 4 -C raptor CPPFLAGS=-I$PREFIX/include
 
 make install -C raptor
 
